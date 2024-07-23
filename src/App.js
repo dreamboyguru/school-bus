@@ -1,16 +1,14 @@
-import logo from './logo.svg';
 import './App.css';
 import Tabs from './componants/superAdmin/Tabs';
-import { Route, Routes } from 'react-router-dom';
-import Dashboard from './componants/superAdmin/Dashboard';
+import { Routes } from 'react-router-dom';
 
 function App() {
   return (
     <div className="App">
       <Tabs />
-      <Routes>
+      {/* <Routes>
         <Route path='/' element={<Dashboard />} />
-      </Routes>
+      </Routes> */}
     </div>
   );
 }

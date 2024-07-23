@@ -1,13 +1,7 @@
-import React, { useEffect, useState } from 'react'
-import { MdOutlineDownloadDone } from "react-icons/md";
-import { GoCodeReview } from "react-icons/go";
-import { GrUserWorker } from "react-icons/gr";
-import { FiUsers } from "react-icons/fi";
-// import axios from 'axios';
+import React from 'react'
 
 const Dashboard = () => { 
-    const [count, setCount] = useState('')
-    const url = process.env.REACT_APP_API_URL;
+    // const url = process.env.REACT_APP_API_URL;
     // useEffect(()=>{
     // const fetchData = async() => {
     //     try {
@@ -22,20 +16,20 @@ const Dashboard = () => {
     // }, [])
     return (
         <div className='min-h-96 text-2xl w-full'>
-            <div class="flex flex-wrap ml-20">
-                <div class="w-1/5 p-2">
+            <div class="flex flex-wrap justify-center">
+                <div class="w-64 max-md:w-48 max-sm:w-full p-2">
                     <div class="bg-white p-4 shadow rounded">Box 1</div>
                 </div>
-                <div class="w-1/5 p-2">
+                <div class="w-64 max-md:w-48 max-sm:w-full p-2">
                     <div class="bg-white p-4 shadow rounded">Box 2</div>
                 </div>
-                <div class="w-1/5 p-2">
+                <div class="w-64 max-md:w-48 max-sm:w-full p-2">
                     <div class="bg-white p-4 shadow rounded">Box 3</div>
                 </div>
-                <div class="w-1/5 p-2">
+                <div class="w-64 max-md:w-48 max-sm:w-full p-2">
                     <div class="bg-white p-4 shadow rounded">Box 4</div>
                 </div>
-                <div class="w-1/5 p-2">
+                <div class="w-64 max-md:w-48 max-sm:w-full p-2">
                     <div class="bg-white p-4 shadow rounded">Box 5</div>
                 </div>
             </div>
