@@ -23,7 +23,7 @@ const SentBus = () => {
         setSearchTerm(event.target.value);
         const filteredData = initialData.filter((item) =>
             item.Name.toLowerCase().includes(event.target.value.toLowerCase()) ||
-            item.licenseNumber .toLowerCase().includes(event.target.value.toLowerCase()) ||
+            item.licenseNumber.toLowerCase().includes(event.target.value.toLowerCase()) ||
             item.email.toLowerCase().includes(event.target.value.toLowerCase()) ||
             item.phone.includes(event.target.value)
         );

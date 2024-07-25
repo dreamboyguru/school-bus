@@ -1,6 +1,4 @@
 import React, { useState } from 'react'
-import AddSchool from './AddSchool';
-import AddDrivers from './AddDrivers';
 import AddAttender from './AddAttender';
 
 const Attender = () => {
@@ -25,7 +23,7 @@ const Attender = () => {
         setSearchTerm(event.target.value);
         const filteredData = initialData.filter((item) =>
             item.Name.toLowerCase().includes(event.target.value.toLowerCase()) ||
-            item.AdharNumber .toLowerCase().includes(event.target.value.toLowerCase()) ||
+            item.AdharNumber.toLowerCase().includes(event.target.value.toLowerCase()) ||
             item.email.toLowerCase().includes(event.target.value.toLowerCase()) ||
             item.phone.includes(event.target.value)
         );

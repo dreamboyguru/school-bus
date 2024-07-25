@@ -6,8 +6,8 @@ const BusRoutes = () => {
     const [isOpen, setIsOpen] = useState(false);
 
     const togglePopup = () => {
-      setIsOpen(!isOpen);
-      document.body.style.overflow = isOpen ? 'auto' : 'hidden'; // Disable background scroll
+        setIsOpen(!isOpen);
+        document.body.style.overflow = isOpen ? 'auto' : 'hidden'; // Disable background scroll
     };
 
     const [routes, setRoutes] = useState([]);
@@ -17,37 +17,12 @@ const BusRoutes = () => {
         setRoutes([...routes, newRoute]);
     };
 
-    // Example routes data for testing (uncomment to use)
-    // setRoutes([
-    //     {
-    //         from: 'Location A',
-    //         to: 'Location B',
-    //         points: ['point 1', 'point 2', 'point 3']
-    //     },
-    //     {
-    //         from: 'Location C',
-    //         to: 'Location D',
-    //         points: ['point 4', 'point 5', 'point 6']
-    //     },
-    //     {
-    //         from: 'Location B',
-    //         to: 'Location D',
-    //         points: ['Point 2', 'point 5', 'point 6']
-    //     },
-    //     {
-    //         from: 'Location A',
-    //         to: 'Location D',
-    //         points: ['Point 2', 'point 5', 'point 6']
-    //     },
-    //     // Add more routes as needed
-    // ]);
-
     const filteredRoutes = routes.filter(route => {
         const fromToMatch = 
-            route.from.toLowerCase().includes(searchQuery.toLowerCase()) ||
-            route.to.toLowerCase().includes(searchQuery.toLowerCase());
-        const pointsMatch = route.points.some(num =>
-            num.toLowerCase().includes(searchQuery.toLowerCase())
+            route.from.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            route.to.name.toLowerCase().includes(searchQuery.toLowerCase());
+        const pointsMatch = route.points.some(point =>
+            point.name.toLowerCase().includes(searchQuery.toLowerCase())
         );
         return fromToMatch || pointsMatch;
     });
@@ -76,18 +51,22 @@ const BusRoutes = () => {
                         className="w-[49%] h-auto bg-white m-1.5 rounded-lg shadow hover:shadow-xl transition-shadow duration-300"
                     >
                         <div className="flex flex-row w-full justify-around text-xl font-bold p-4 bg-gradient-to-r from-gray-50 via-gray-100 to-gray-50 text-black rounded-t-lg">
-                            <div className='w-5/12 custom-scrollbar overflow-x-auto scroll mr-4'>{route.from}</div>
+                            <div className='w-5/12 custom-scrollbar overflow-x-auto scroll mr-4'>
+                                {route.from.name}
+                            </div>
                             <div className='w-1/12 pt-1'><IoMdSwap className='text-2xl'/></div>
-                            <div className='w-5/12 custom-scrollbar overflow-x-auto scroll ml-4'>{route.to}</div>
+                            <div className='w-5/12 custom-scrollbar overflow-x-auto scroll ml-4'>
+                                {route.to.name}
+                            </div>
                         </div>
                         <hr className="border border-gray-200" />
                         <div className="p-4 flex flex-wrap">
-                            {route.points.map((num, i) => (
+                            {route.points.map((point, i) => (
                                 <div
                                     key={i}
                                     className="text-gray-700 border border-gray-500 m-2 p-0 px-5 rounded-md text-lg"
                                 >
-                                    {num}
+                                    {point.name}
                                 </div>
                             ))}
                         </div>

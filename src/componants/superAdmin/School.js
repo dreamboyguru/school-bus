@@ -11,7 +11,7 @@ const School = () => {
 
     const initialData = [
         { id: 1, schoolName: "John Doe school", principalName: "john abc", phone: "91+ 923-456-7890", email : 'abc123xyz@GiMailShirt.com', status : 0 },
-        { id: 2, schoolName: "Jane Smith school", principalName: "jane abc", phone: "91+ 998-765-4321", email : 'abc123xyz@GiMailShirt.com', status : 1 },
+        { id: 2, schoolName: "Jane Smith school", principalName: "jane abc", phone: "91+ 998-765-4321", email : 'abc123xyz@GiMailShirt.com', status : 0 },
         { id: 3, schoolName: "Alice Johnson school", principalName: "alic abcm", phone: "91+ 956-789-0123", email : 'abc123xyz@GiMailShirt.com', status : 1 },
         // Add more data as needed
     ];

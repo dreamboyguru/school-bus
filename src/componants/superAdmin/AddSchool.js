@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { IoClose } from 'react-icons/io5';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { AiOutlineClose } from 'react-icons/ai';
@@ -15,11 +14,16 @@ Yup.addMethod(Yup.string, 'singleSpace', function() {
 
 // Validation Schema using Yup
 const validationSchema = Yup.object({
-  schoolName: Yup.string()
-    .min(4, 'min 4 characters required')
-    .matches(/^[a-zA-Z\s]*$/, 'Only characters and single spaces allowed')
-    .singleSpace()
-    .required('School Name is required'),
+  schoolName: Yup.object({
+    name: Yup.string()  
+      .min(4, 'min 4 characters required')
+      .matches(/^[a-zA-Z\s]*$/, 'Only characters and single spaces allowed')
+      .singleSpace()
+      .required('School Name is required'),
+    lat: Yup.number().required('Required').min(-90).max(90),
+    lon: Yup.number().required('Required').min(-180).max(180)
+  }).required(),
+  
   principalName: Yup.string()
     .min(4, 'min 4 characters required')
     .matches(/^[a-zA-Z\s]*$/, 'Only characters and single spaces allowed')
@@ -43,7 +47,7 @@ const AddSchool = ({ togglePopup }) => {
         </button>
         <h2 className="text-2xl font-bold mb-4 pb-2 border-b-2 border-gray-200 -mx-6 text-center text-gray-800">Add New School</h2>
         <Formik
-          initialValues={{ schoolName: '', principalName: '',  phone: '', email: '', status : 0}}
+          initialValues={{ schoolName: { name: '', lat: '', lon: '' }, principalName: '',  phone: '', email: '', status : 0}}
           validationSchema={validationSchema}
           onSubmit={(values, { resetForm }) => {
             // Handle form submission
@@ -56,20 +60,50 @@ const AddSchool = ({ togglePopup }) => {
               <div className="mb-4">
                 <div className='relative'>
                   <ErrorMessage
-                    name="schoolName"
+                    name="schoolName.name"
                     component="div"
                     className="text-red-500 text-sm absolute top-0 right-0"
                   />
                 </div>
-                <label className="block text-gray-800 mb-2" htmlFor="schoolName">
+                <label className="block text-gray-800 mb-2" htmlFor="schoolName.name">
                   School Name
                 </label>
                 <Field
                   type="text"
-                  id="schoolName"
-                  name="schoolName"
+                  id="schoolName.name"
+                  name="schoolName.name"
                   className="border border-blue-300 shadow-sm placeholder-blue-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 p-2 w-full rounded"
                 />
+                <div className='flex flex-row space-x-2 pt-2'>
+                  <div className='w-full relative'>
+                    <ErrorMessage
+                        name="schoolName.lat"
+                        component="div"
+                        className="text-red-500 text-xs absolute top-0 right-1 bg-white px-2"
+                    />
+                    <Field
+                      type="number"
+                      id="schoolName.lat"
+                      name="schoolName.lat"
+                      placeholder="Latitude"
+                      className="phone-input border border-blue-300 shadow-sm placeholder-blue-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 p-2 w-full rounded"
+                    />
+                  </div>
+                  <div className='w-full relative'>
+                    <ErrorMessage
+                      name="schoolName.lon"
+                      component="div"
+                      className="text-red-500 text-xs absolute top-0 right-1 bg-white px-2"
+                    />  
+                    <Field
+                      type="number"
+                      id="schoolName.lon"
+                      name="schoolName.lon"
+                      placeholder="Longitude"
+                      className="phone-input border border-blue-300 shadow-sm placeholder-blue-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 p-2 w-full rounded"
+                    />
+                  </div>
+                </div>
               </div>
               <div className="mb-4">
                 <div className='relative'>
