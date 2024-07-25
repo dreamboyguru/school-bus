@@ -15,7 +15,7 @@ const Dashboard = () => {
     // fetchData()
     // }, [])
     return (
-        <div className='min-h-96 text-2xl w-full'>
+        <div className='text-2xl w-full mt-2'>
             <div class="flex flex-wrap justify-center">
                 <div class="w-64 max-md:w-48 max-sm:w-full p-2">
                     <div class="bg-white p-4 shadow rounded">Box 1</div>

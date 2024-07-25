@@ -7,7 +7,7 @@ import { AiOutlineClose } from 'react-icons/ai';
 const validationSchema = Yup.object({
   from: Yup.string().required('From location is required'),
   to: Yup.string().required('To location is required'),
-  numbers: Yup.array()
+  points: Yup.array()
     .of(Yup.string().required('Each point is required'))
     .min(1, 'At least one point is required')
 });
@@ -25,9 +25,10 @@ export const AddRouteForm = ({ onAddRoute, togglePopup }) => {
         </button>
       <h2 className="text-2xl font-bold mb-4 pb-2 border-b-2 border-gray-200 -mx-6 text-center text-gray-800">Add New Route</h2>
           <Formik
-            initialValues={{ from: '', to: '', numbers: [''] }}
+            initialValues={{ from: '', to: '', points: [''] }}
             validationSchema={validationSchema}
             onSubmit={(values, { resetForm }) => {
+              console.log(values);
               onAddRoute(values);
               resetForm();
             }}
@@ -63,20 +64,20 @@ export const AddRouteForm = ({ onAddRoute, togglePopup }) => {
 
                 <div className="mb-4">
                   <div className='relative'>
-                    <ErrorMessage name="numbers" component="div" className="absolute top-0 right-0 text-red-600 text-sm mt-1" />
+                    <ErrorMessage name="points" component="div" className="absolute top-0 right-0 text-red-600 text-sm mt-1" />
                   </div>
                   <label className="block text-gray-800">Points</label>
-                  {values.numbers.map((number, index) => (
+                  {values.points.map((point, index) => (
                     <div key={index} className="flex items-center mb-2">
                       <Field
                         type="text"
-                        name={`numbers.${index}`}
+                        name={`points.${index}`}
                         className="border border-blue-300 shadow-sm placeholder-blue-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 p-2 w-full rounded"
                       />
                       <button
                         type="button"
                         className="ml-2 text-red-500"
-                        onClick={() => setFieldValue('numbers', values.numbers.filter((_, i) => i !== index))}
+                        onClick={() => setFieldValue('points', values.points.filter((_, i) => i !== index))}
                       >
                         Remove
                       </button>
@@ -85,7 +86,7 @@ export const AddRouteForm = ({ onAddRoute, togglePopup }) => {
                   <button
                     type="button"
                     className="text-blue-500 mt-2"
-                    onClick={() => setFieldValue('numbers', [...values.numbers, ''])}
+                    onClick={() => setFieldValue('points', [...values.points, ''])}
                   >
                     Add Point
                   </button>
@@ -119,7 +120,7 @@ export const BusRoute = ({ routes }) => {
           </div>
           <hr className="border border-gray-200" />
           <div className="p-4 flex flex-wrap">
-            {route.numbers.map((num, i) => (
+            {route.points.map((num, i) => (
               <div
                 key={i}
                 className="text-gray-800 bg-blue-200 m-2 p-2 rounded-md shadow text-lg"

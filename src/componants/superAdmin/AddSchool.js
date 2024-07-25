@@ -5,15 +5,25 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { AiOutlineClose } from 'react-icons/ai';
 
+// Custom test to allow single spaces
+Yup.addMethod(Yup.string, 'singleSpace', function() {
+  return this.test('single-space', 'Not multiple spaces', function(value) {
+    // Check if the value contains consecutive spaces
+    return !/\s{2,}/.test(value);
+  });
+});
+
 // Validation Schema using Yup
 const validationSchema = Yup.object({
   schoolName: Yup.string()
     .min(4, 'min 4 characters required')
-    .matches(/^[a-zA-z]+$/, 'Only characters allowed')
+    .matches(/^[a-zA-Z\s]*$/, 'Only characters and single spaces allowed')
+    .singleSpace()
     .required('School Name is required'),
   principalName: Yup.string()
     .min(4, 'min 4 characters required')
-    .matches(/^[a-zA-z]+$/, 'Only characters allowed')
+    .matches(/^[a-zA-Z\s]*$/, 'Only characters and single spaces allowed')
+    .singleSpace()
     .required('Principal Name is required'),
   phone: Yup.string()
     .matches(/^[0-9]{10}$/, 'Phone number must be exactly 10 digits')

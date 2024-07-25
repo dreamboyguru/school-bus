@@ -4,13 +4,16 @@ import { Link, Route, Routes } from 'react-router-dom';
 import { TfiDashboard } from "react-icons/tfi";
 import { GiThreeLeaves } from "react-icons/gi";
 import { RiMenuFold2Fill, RiMenuFoldFill, RiSchoolLine } from "react-icons/ri";
-import { FaPeopleArrows, FaRoute, FaRupeeSign } from "react-icons/fa";
+import { FaBus, FaPeopleArrows, FaRoute, FaRupeeSign } from "react-icons/fa";
 import { IoDocuments  } from "react-icons/io5";
 import { RiStickyNoteAddFill } from "react-icons/ri";
 import Dashboard from './Dashboard';
 import { TbHeartHandshake } from 'react-icons/tb';
 import School from './School';
 import BusRoutes from './BusRoutes';
+import Drivers from './Drivers';
+import Attender from './Attender';
+import SentBus from './SentBus';
 
 const Tabs = () => {
     const [loginBox, setLoginBox] = useState(false);
@@ -62,6 +65,7 @@ const Tabs = () => {
                             />
                         }
                     </nav>
+                    <nav className='font-bold text-2xl font-mono'>Wellcome Super Admin</nav>
                     <nav>
                         <ul className='flex space-x-4 items-center'>
                             <li className='relative' onClick={loginToggle}>
@@ -84,6 +88,16 @@ const Tabs = () => {
                                 Dashboard
                                 <TfiDashboard className='text-3xl pl-2'/>
                             </Link> <hr className='border-gray-700' />
+
+                            <Link 
+                                to='sentBus' 
+                                onClick={()=>handleActiveToggle(6)}  
+                                className={`flex flex-row py-5 items-center justify-center hover:bg-gray-700 ${active === 6 && 'bg-gray-700'} text-center`}
+                            >
+                                Sent Bus
+                                <FaBus className='text-3xl pl-2'/>
+                            </Link> <hr className='border-gray-700' />
+
                             <Link 
                                 to='school' 
                                 onClick={()=>handleActiveToggle(2)}  
@@ -92,6 +106,7 @@ const Tabs = () => {
                                 School
                                 <RiSchoolLine className='text-3xl pl-2'/>
                             </Link> <hr className='border-gray-700' />
+
                             <Link 
                                 to='routes' 
                                 onClick={()=>handleActiveToggle(3)}
@@ -101,7 +116,7 @@ const Tabs = () => {
                                 <FaRoute className='text-3xl pl-2'/>
                             </Link> <hr className='border-gray-700' />
                             <Link 
-                                to='rateslist' 
+                                to='driver' 
                                 onClick={()=>handleActiveToggle(4)}
                                 className={`flex flex-row py-5 items-center justify-center hover:bg-gray-700 ${active === 4 && 'bg-gray-700'} text-center`}
                             >
@@ -109,7 +124,7 @@ const Tabs = () => {
                                 <TbHeartHandshake className='text-4xl pl-2'/>
                             </Link> <hr className='border-gray-700' />
                             <Link 
-                                to='leveslist'
+                                to='attender'
                                 onClick={()=>handleActiveToggle(5)}
                                 className={`flex flex-row py-5 items-center justify-center hover:bg-gray-700 ${active === 5 && 'bg-gray-700'} text-center`}
                             >
@@ -120,20 +135,43 @@ const Tabs = () => {
                     </nav>) : (<nav className='w-16 max-md:w-0 max-md:collapse duration-300'>
                         <ul className='flex flex-col text-center'>
                             <hr className='border-gray-700' />
-                            <Link to='adminDash' className='flex flex-row py-5 items-center justify-center hover:bg-gray-700 text-center'>
-                                <TfiDashboard className='text-3xl pl-2'/>
+                            <Link 
+                                to='adminDash' 
+                                onClick={()=>handleActiveToggle(1)} 
+                                className={`flex flex-row py-5 items-center justify-center hover:bg-gray-700 ${active === 1 && 'bg-gray-700'} text-center`}
+                            ><TfiDashboard className='text-3xl pl-2'/>
                             </Link> <hr className='border-gray-700' />
-                            <Link to='addServices' className='flex flex-row py-5 items-center justify-center hover:bg-gray-700 text-center'>
-                                <RiStickyNoteAddFill className='text-3xl pl-2'/>
+
+                            <Link 
+                                to='SentBus' 
+                                onClick={()=>handleActiveToggle(6)}  
+                                className={`flex flex-row py-5 items-center justify-center hover:bg-gray-700 ${active === 6 && 'bg-gray-700'} text-center`}
+                            ><FaBus className='text-3xl pl-2'/>
                             </Link> <hr className='border-gray-700' />
-                            <Link to='documents' className='flex flex-row py-5 items-center justify-center hover:bg-gray-700 text-center'>
-                                <IoDocuments className='text-3xl pl-2'/>
+
+                            <Link 
+                                to='school' 
+                                onClick={()=>handleActiveToggle(2)}  
+                                className={`flex flex-row py-5 items-center justify-center hover:bg-gray-700 ${active === 2 && 'bg-gray-700'} text-center`}
+                            ><RiSchoolLine className='text-3xl pl-2'/>
                             </Link> <hr className='border-gray-700' />
-                            <Link to='rateslist' className='flex flex-row py-5 items-center justify-center hover:bg-gray-700 text-center'>
-                                <FaRupeeSign className='text-3xl pl-2'/>
+                            <Link 
+                                to='routes' 
+                                onClick={()=>handleActiveToggle(3)}
+                                className={`flex flex-row py-5 items-center justify-center hover:bg-gray-700 ${active === 3 && 'bg-gray-700'} text-center`}
+                            ><FaRoute className='text-3xl pl-2'/>
                             </Link> <hr className='border-gray-700' />
-                            <Link to='leveslist' className='flex flex-row py-5 items-center justify-center hover:bg-gray-700 text-center'>
-                                <GiThreeLeaves className='text-3xl pl-2'/>
+                            <Link 
+                                to='driver' 
+                                onClick={()=>handleActiveToggle(4)}
+                                className={`flex flex-row py-5 items-center justify-center hover:bg-gray-700 ${active === 4 && 'bg-gray-700'} text-center`}
+                            ><TbHeartHandshake className='text-4xl pl-2'/>
+                            </Link> <hr className='border-gray-700' />
+                            <Link 
+                                to='attender'
+                                onClick={()=>handleActiveToggle(5)}
+                                className={`flex flex-row py-5 items-center justify-center hover:bg-gray-700 ${active === 5 && 'bg-gray-700'} text-center`}
+                            ><FaPeopleArrows className='text-3xl pl-2'/>
                             </Link> <hr className='border-gray-700' />
                             {/* <li className='flex flex-row py-5 items-center justify-center hover:bg-gray-700 text-center'>
                                 <MdReviews className='text-3xl pl-2'/>
@@ -150,6 +188,9 @@ const Tabs = () => {
                     <Route path='adminDash' element={<Dashboard />} />
                     <Route path='school' element={<School />} />
                     <Route path='routes' element={<BusRoutes />} />
+                    <Route path='driver' element={<Drivers />} />
+                    <Route path='attender' element={<Attender />} />
+                    <Route path='sentBus' element={<SentBus />} />
                     {/* <Route path='addServices' element={<AddServices />} />
                     <Route path='documents' element={<Documents />} />
                     <Route path='leveslist' element={<LeavesList />} />
