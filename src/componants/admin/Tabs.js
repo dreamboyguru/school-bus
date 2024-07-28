@@ -5,9 +5,9 @@ import { TfiDashboard } from "react-icons/tfi";
 import { RiMenuFold2Fill, RiMenuFoldFill } from "react-icons/ri";
 import { PiStudentBold } from 'react-icons/pi';
 import Dashboard from './Dashboard';
-import Student from './Student';
 
 const Test = lazy(()=> import('./Test'));
+const Student = lazy(()=> import('./Student'));
 
 const AdminTabs = () => {
     const [loginBox, setLoginBox] = useState(false);
