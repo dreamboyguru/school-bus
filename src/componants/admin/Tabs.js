@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, Suspense, lazy } from 'react';
 import { CgProfile } from 'react-icons/cg';
 import { Link, Route, Routes } from 'react-router-dom';
 import { TfiDashboard } from "react-icons/tfi";
@@ -6,6 +6,8 @@ import { RiMenuFold2Fill, RiMenuFoldFill } from "react-icons/ri";
 import { PiStudentBold } from 'react-icons/pi';
 import Dashboard from './Dashboard';
 import Student from './Student';
+
+const Test = lazy(()=> import('./Test'));
 
 const AdminTabs = () => {
     const [loginBox, setLoginBox] = useState(false);
@@ -83,10 +85,19 @@ const AdminTabs = () => {
 
                             <Link 
                                 to='student' 
-                                onClick={()=>handleActiveToggle(6)}  
-                                className={`flex flex-row py-5 items-center justify-center hover:bg-gray-700 ${active === 6 && 'bg-gray-700'} text-center`}
+                                onClick={()=>handleActiveToggle(2)}  
+                                className={`flex flex-row py-5 items-center justify-center hover:bg-gray-700 ${active === 2 && 'bg-gray-700'} text-center`}
                             >
                                 Student
+                                <PiStudentBold className='text-3xl pl-2'/>
+                            </Link> <hr className='border-gray-700' />
+
+                            <Link 
+                                to='Test' 
+                                onClick={()=>handleActiveToggle(3)}  
+                                className={`flex flex-row py-5 items-center justify-center hover:bg-gray-700 ${active === 3 && 'bg-gray-700'} text-center`}
+                            >
+                                Test
                                 <PiStudentBold className='text-3xl pl-2'/>
                             </Link> <hr className='border-gray-700' />
 
@@ -113,15 +124,19 @@ const AdminTabs = () => {
                 </div>
             </header>
             <body  className={` ${menu ? 'md:pl-52' : 'md:pl-16'} pt-16 transition-all duration-300 min-h-screen bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400`}>
-                <Routes>
-                    <Route path='/' element={<Dashboard />} />
-                    <Route path='adminDash' element={<Dashboard />} />
-                    <Route path='student' element={<Student />} />
-                    {/* <Route path='routes' element={<BusRoutes />} />
-                    <Route path='driver' element={<Drivers />} />
-                    <Route path='attender' element={<Attender />} />
-                    <Route path='sentBus' element={<SentBus />} /> */}
-                </Routes>
+                <Suspense fallback={<div>Loading...</div>}>
+                    <Routes>
+                        <Route path='/' element={<Dashboard />} />
+                        <Route path='/adminDash' element={<Dashboard />} />
+                        <Route path='/student' element={<Student />} />
+                        <Route path='/test' element={<Test />} />
+                        {/* Uncomment and add elements as needed */}
+                        {/* <Route path='/routes' element={<BusRoutes />} />
+                        <Route path='/driver' element={<Drivers />} />
+                        <Route path='/attender' element={<Attender />} />
+                        <Route path='/sentBus' element={<SentBus />} /> */}
+                    </Routes>
+                </Suspense>
             </body>
         </>
     );
