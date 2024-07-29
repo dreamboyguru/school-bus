@@ -21,7 +21,7 @@ const validationSchema = Yup.object({
 
 const AddAttender = ({ togglePopup }) => {
   return ReactDOM.createPortal(
-    <div className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm flex items-center justify-center">
+    <div className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm flex items-center justify-center z-30">
       <div className="bg-white p-8 pt-4 rounded shadow-lg max-w-lg w-full relative">
         <button
           onClick={togglePopup}

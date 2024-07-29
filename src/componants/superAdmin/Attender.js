@@ -1,20 +1,39 @@
 import React, { useState } from 'react'
 import AddAttender from './AddAttender';
+import Pagination from '../Pagination';
+
+
+const initialData = [
+    { id: 1, Name: "John Doe school", AdharNumber : "ASG3567", phone: "91+ 923-456-7890", email : 'abc123xyz@GiMailShirt.com', status : 0 },
+    { id: 2, Name: "Jane Smith school", AdharNumber : "ASG3567", phone: "91+ 998-765-4321", email : 'abc123xyz@GiMailShirt.com', status : 1 },
+    { id: 3, Name: "Alice Johnson school", AdharNumber : "ASG3567m", phone: "91+ 956-789-0123", email : 'abc123xyz@GiMailShirt.com', status : 1 },
+    { id: 4, Name: "John Doe school", AdharNumber : "ASG3567", phone: "91+ 923-456-7890", email : 'abc123xyz@GiMailShirt.com', status : 0 },
+    { id: 5, Name: "Jane Smith school", AdharNumber : "ASG3567", phone: "91+ 998-765-4321", email : 'abc123xyz@GiMailShirt.com', status : 1 },
+    { id: 6, Name: "Alice Johnson school", AdharNumber : "ASG3567m", phone: "91+ 956-789-0123", email : 'abc123xyz@GiMailShirt.com', status : 1 },
+    { id: 7, Name: "John Doe school", AdharNumber : "ASG3567", phone: "91+ 923-456-7890", email : 'abc123xyz@GiMailShirt.com', status : 0 },
+    { id: 8, Name: "Jane Smith school", AdharNumber : "ASG3567", phone: "91+ 998-765-4321", email : 'abc123xyz@GiMailShirt.com', status : 1 },
+    { id: 9, Name: "Alice Johnson school", AdharNumber : "ASG3567m", phone: "91+ 956-789-0123", email : 'abc123xyz@GiMailShirt.com', status : 1 },
+    { id: 10, Name: "John Doe school", AdharNumber : "ASG3567", phone: "91+ 923-456-7890", email : 'abc123xyz@GiMailShirt.com', status : 0 },
+    { id: 11, Name: "Jane Smith school", AdharNumber : "ASG3567", phone: "91+ 998-765-4321", email : 'abc123xyz@GiMailShirt.com', status : 1 },
+    { id: 12, Name: "Alice Johnson school", AdharNumber : "ASG3567m", phone: "91+ 956-789-0123", email : 'abc123xyz@GiMailShirt.com', status : 1 },
+    { id: 13, Name: "John Doe school", AdharNumber : "ASG3567", phone: "91+ 923-456-7890", email : 'abc123xyz@GiMailShirt.com', status : 0 },
+    { id: 14, Name: "Jane Smith school", AdharNumber : "ASG3567", phone: "91+ 998-765-4321", email : 'abc123xyz@GiMailShirt.com', status : 1 },
+    { id: 15, Name: "Alice Johnson school", AdharNumber : "ASG3567m", phone: "91+ 956-789-0123", email : 'abc123xyz@GiMailShirt.com', status : 1 },
+    // Add more data as needed
+];
+
 
 const Attender = () => {
     const [isOpen, setIsOpen] = useState(false);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [studentsPerPage, setStudentsPerPage] = useState(5)
 
     const togglePopup = () => {
       setIsOpen(!isOpen);
       document.body.style.overflow = isOpen ? 'auto' : 'hidden'; // Disable background scroll
     };
 
-    const initialData = [
-        { id: 1, Name: "John Doe school", AdharNumber : "ASG3567", phone: "91+ 923-456-7890", email : 'abc123xyz@GiMailShirt.com', status : 0 },
-        { id: 2, Name: "Jane Smith school", AdharNumber : "ASG3567", phone: "91+ 998-765-4321", email : 'abc123xyz@GiMailShirt.com', status : 1 },
-        { id: 3, Name: "Alice Johnson school", AdharNumber : "ASG3567m", phone: "91+ 956-789-0123", email : 'abc123xyz@GiMailShirt.com', status : 1 },
-        // Add more data as needed
-    ];
+    
 
     const [searchTerm, setSearchTerm] = useState("");
     const [data, setData] = useState(initialData);
@@ -29,6 +48,19 @@ const Attender = () => {
         );
         setData(filteredData);
     };
+
+     // Calculate indices for pagination
+     const indexOfLastStudent = currentPage * studentsPerPage;
+     const indexOfFirstStudent = indexOfLastStudent - studentsPerPage;
+     const currentStudents = data.slice(indexOfFirstStudent, indexOfLastStudent);
+ 
+    // Change page
+    const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
+    const handleSelectPage = (e) => {
+        setStudentsPerPage(e.target.value)
+        setCurrentPage(1)
+    }
        
     return (
         <div className=''>
@@ -42,6 +74,16 @@ const Attender = () => {
                             className='w-1/6 bg-white rounded-md shadow p-2 px-10 mr-5 hover:bg-gray-100 text-gray-800 font-semibold hover:font-bold hover:scale-105 duration-500'
                             onClick={togglePopup}
                         >Add New</button>
+                        <select
+                            className='w-1/12 bg-white rounded-md shadow p-2 px-5 mr-5'
+                            value={studentsPerPage}
+                            onChange={handleSelectPage}
+                        >
+                            <option value='5'>5</option>
+                            <option value='10'>10</option>
+                            <option value='25'>25</option>
+                            <option value='50'>50</option>
+                        </select>
                         <input
                             type="text"
                             className="w-full p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-1 focus:ring-blue-300"
@@ -63,7 +105,7 @@ const Attender = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {data.map((item) => (
+                                {currentStudents.map((item) => (
                                 <tr key={item.id}>
                                     <td className="py-2 px-4 border-b">{item.id}</td>
                                     <td className="py-2 px-4 border-b">{item.Name}</td>
@@ -78,6 +120,12 @@ const Attender = () => {
                                 ))}
                             </tbody>
                         </table>
+                        <Pagination
+                                studentsPerPage={studentsPerPage}
+                                totalStudents={data.length}
+                                paginate={paginate}
+                                currentPage={currentPage}
+                            />
                     </div>
                 </div>
             </div>

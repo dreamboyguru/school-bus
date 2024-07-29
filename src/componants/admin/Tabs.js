@@ -44,7 +44,7 @@ const AdminTabs = () => {
     return (
         <>
             <header onClick={loginToggleShow}>
-                <div className='fixed w-full bg-gray-800 p-4 flex justify-between items-center shadow-md px-6 md:px-14 text-white'>
+                <div className='fixed w-full bg-gray-800 p-4 flex justify-between items-center shadow-md px-6 md:px-14 text-white z-20'>
                     <nav className='flex flex-row'>
                         {/* <h1 className='text-2xl font-bold'><LiaServicestack /></h1> */}
                         <Link to='adminDash' onClick={()=>handleActiveToggle(1)} className='text-2xl font-bold'>LOGO</Link>

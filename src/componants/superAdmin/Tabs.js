@@ -3,7 +3,7 @@ import { CgProfile } from 'react-icons/cg';
 import { Link, Route, Routes } from 'react-router-dom';
 import { TfiDashboard } from "react-icons/tfi";
 import { RiMenuFold2Fill, RiMenuFoldFill, RiSchoolLine } from "react-icons/ri";
-import { FaBus, FaPeopleArrows, FaRoute } from "react-icons/fa";
+import { FaBus, FaRoute } from "react-icons/fa";
 import Dashboard from './Dashboard';
 import { TbHeartHandshake } from 'react-icons/tb';
 import School from './School';
@@ -11,6 +11,7 @@ import BusRoutes from './BusRoutes';
 import Drivers from './Drivers';
 import Attender from './Attender';
 import SentBus from './SentBus';
+import { FaHandsHoldingChild } from 'react-icons/fa6';
 
 const Tabs = () => {
     const [loginBox, setLoginBox] = useState(false);
@@ -47,7 +48,7 @@ const Tabs = () => {
     return (
         <>
             <header onClick={loginToggleShow}>
-                <div className='fixed w-full bg-gray-800 p-4 flex justify-between items-center shadow-md px-6 md:px-14 text-white'>
+                <div className='fixed w-full bg-gray-800 p-4 flex justify-between items-center shadow-md px-6 md:px-14 text-white z-20'>
                     <nav className='flex flex-row'>
                         {/* <h1 className='text-2xl font-bold'><LiaServicestack /></h1> */}
                         <Link to='adminDash' onClick={()=>handleActiveToggle(1)} className='text-2xl font-bold'>LOGO</Link>
@@ -126,7 +127,7 @@ const Tabs = () => {
                                 className={`flex flex-row py-5 items-center justify-center hover:bg-gray-700 ${active === 5 && 'bg-gray-700'} text-center`}
                             >
                                 Attender
-                                <FaPeopleArrows className='text-3xl pl-2'/>
+                                <FaHandsHoldingChild className='text-3xl pl-2'/>
                             </Link> <hr className='border-gray-700' />
                         </ul>
                     </nav>) : (<nav className='w-16 max-md:w-0 max-md:collapse duration-300'>
@@ -168,7 +169,7 @@ const Tabs = () => {
                                 to='attender'
                                 onClick={()=>handleActiveToggle(5)}
                                 className={`flex flex-row py-5 items-center justify-center hover:bg-gray-700 ${active === 5 && 'bg-gray-700'} text-center`}
-                            ><FaPeopleArrows className='text-3xl pl-2'/>
+                            ><FaHandsHoldingChild className='text-3xl pl-2'/>
                             </Link> <hr className='border-gray-700' />
                             {/* <li className='flex flex-row py-5 items-center justify-center hover:bg-gray-700 text-center'>
                                 <MdReviews className='text-3xl pl-2'/>

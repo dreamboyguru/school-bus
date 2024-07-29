@@ -42,53 +42,60 @@ const initialData = [
 ];
 
 
-const Student = () => {
+const Student = ({type = 'all'}) => {
     const [isOpen, setIsOpen] = useState(false);
-  const [searchTerm, setSearchTerm] = useState("");
-  const [data, setData] = useState(initialData);
-  const [currentPage, setCurrentPage] = useState(1);
-  const studentsPerPage = 10;
+    const [searchTerm, setSearchTerm] = useState("");
+    const [data, setData] = useState(initialData);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [studentsPerPage, setStudentsPerPage] = useState(5);
 
-  // Toggle popup and manage background scroll
-  const togglePopup = () => {
-    setIsOpen(prevIsOpen => {
-      const newIsOpen = !prevIsOpen;
-      document.body.style.overflow = newIsOpen ? 'hidden' : 'auto';
-      return newIsOpen;
-    });
-  };
-  
+    
+    // Toggle popup and manage background scroll
+    const togglePopup = () => {
+        setIsOpen(prevIsOpen => {
+        const newIsOpen = !prevIsOpen;
+        document.body.style.overflow = newIsOpen ? 'hidden' : 'auto';
+        return newIsOpen;
+        });
+    };
+    
+    // Filter data based on search term
+    useEffect(() => {
+        const filteredData = initialData.filter((item) =>
+            item.StudentName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            item.LastName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            (item.StudentName + ' ' + item.LastName).toLowerCase().includes(searchTerm.toLowerCase()) ||
+            item.RollNumber.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            item.FatherName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            item.MotherName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            item.Destination.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            item.Point.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            item.Email.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            item.PhoneNumber.includes(searchTerm)
+            );
+            setData(filteredData);
+    }, [searchTerm]);
 
-  // Filter data based on search term
-  useEffect(() => {
-    const filteredData = initialData.filter((item) =>
-      item.StudentName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      item.LastName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      (item.StudentName + ' ' + item.LastName).toLowerCase().includes(searchTerm.toLowerCase()) ||
-      item.RollNumber.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      item.FatherName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      item.MotherName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      item.Destination.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      item.Point.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      item.Email.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      item.PhoneNumber.includes(searchTerm)
-    );
-    setData(filteredData);
-  }, [searchTerm]);
+    
+    // Calculate indices for pagination
+    const indexOfLastStudent = currentPage * studentsPerPage;
+    const indexOfFirstStudent = indexOfLastStudent - studentsPerPage;
+    const currentStudents = data.slice(indexOfFirstStudent, indexOfLastStudent);
 
-  // Handle search input change
-  const handleSearch = (event) => {
-    setSearchTerm(event.target.value);
-  };
+    // Change page
+    const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
-  // Calculate indices for pagination
-  const indexOfLastStudent = currentPage * studentsPerPage;
-  const indexOfFirstStudent = indexOfLastStudent - studentsPerPage;
-  const currentStudents = data.slice(indexOfFirstStudent, indexOfLastStudent);
+    // Handle search input change
+    const handleSearch = (event) => {
+        setSearchTerm(event.target.value);
+        // setCurrentPage(1)
+    };
 
-  // Change page
-  const paginate = (pageNumber) => setCurrentPage(pageNumber);
-
+    const handleSelectPage = (e) => {
+        // console.log(e.target.value);
+        setStudentsPerPage(Number(e.target.value))
+        setCurrentPage(1)
+    }
 
        
     return (
@@ -103,6 +110,16 @@ const Student = () => {
                             className='w-1/6 bg-white rounded-md shadow p-2 px-10 mr-5 hover:bg-gray-100 text-gray-800 font-semibold hover:font-bold hover:scale-105 duration-500'
                             onClick={togglePopup}
                         >Add New</button>
+                        <select 
+                            value={studentsPerPage}
+                            onChange={handleSelectPage}
+                            className='w-1/12 bg-white rounded-md shadow p-2 px-5 mr-5 font-semibold'>
+                            <option className='py-2 border-b-2 border-gray-600' value='5'>5</option>
+                            <option className='py-2 border-b-2 border-gray-600' value='10'>10</option>
+                            <option className='py-2 border-b-2 border-gray-600' value='25'>25</option>
+                            <option className='py-2 border-b-2 border-gray-600' value='50'>50</option>
+                            <option className='py-2 border-b-2 border-gray-600' value='100'>100</option>
+                        </select>
                         <input
                             type="text"
                             className="w-full p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-1 focus:ring-blue-300"

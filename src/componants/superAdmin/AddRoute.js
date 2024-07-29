@@ -35,8 +35,8 @@ const validationSchema = Yup.object({
 
 export const AddRouteForm = ({ onAddRoute, togglePopup }) => {
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm flex items-center justify-center">
-      <div className="bg-white p-8 pt-4 rounded shadow-lg max-w-xl w-full max-h-[700px] relative overflow-y-scroll">
+    <div className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm flex items-center justify-center z-30">
+      <div className="bg-white p-8 pt-4 rounded shadow-lg max-w-xl w-full max-h-[700px] relative overflow-y-auto">
         <button
           onClick={togglePopup}
           className="absolute top-2 right-2 text-gray-500 hover:text-gray-800"
