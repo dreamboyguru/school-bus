@@ -26,7 +26,7 @@ const Dashboard = () => {
                                                 
                 <div class="w-64 max-md:w-48 max-sm:w-full p-2">
                     <div class="relative">
-                        <div class="absolute -top-12 left-1/2 transform -translate-x-1/2 z-10 bg-gradient-to-b from-blue-400 to-blue-600 flex justify-center items-center w-20 h-20 text-4xl rounded-full p-2 border- border-gray-300 shadow-lg">
+                        <div class="absolute -top-12 left-1/2 transform -translate-x-1/2 z-10 bg-gradient-to-b from-blue-400 to-blue-600 flex justify-center items-center w-20 h-20 text-4xl rounded-full p-2 border-4 border-gray-300 shadow-lg">
                             <FaSchoolLock class="text-white" />
                         </div>
                     </div>
@@ -42,7 +42,7 @@ const Dashboard = () => {
                 </div>
                 <div class="w-64 max-md:w-48 max-sm:w-full p-2">
                     <div class="relative">
-                        <div class="absolute -top-12 left-1/2 transform -translate-x-1/2 z-10 bg-gradient-to-b from-gray-400 to-gray-600 flex justify-center items-center w-20 h-20 text-4xl rounded-full p-2 border- border-gray-300 shadow-lg">
+                        <div class="absolute -top-12 left-1/2 transform -translate-x-1/2 z-10 bg-gradient-to-b from-gray-400 to-gray-600 flex justify-center items-center w-20 h-20 text-4xl rounded-full p-2 border-4 border-gray-300 shadow-lg">
                             <FaRoute class="text-white" />
                         </div>
                     </div>
@@ -58,7 +58,7 @@ const Dashboard = () => {
                 </div>
                 <div class="w-64 max-md:w-48 max-sm:w-full p-2">
                     <div class="relative">
-                        <div class="absolute -top-12 left-1/2 transform -translate-x-1/2 z-10 bg-gradient-to-b from-yellow-400 to-yellow-600 flex justify-center items-center w-20 h-20 text-4xl rounded-full p-2 border- border-gray-300 shadow-lg">
+                        <div class="absolute -top-12 left-1/2 transform -translate-x-1/2 z-10 bg-gradient-to-b from-yellow-400 to-yellow-600 flex justify-center items-center w-20 h-20 text-4xl rounded-full p-2 border-4 border-gray-300 shadow-lg">
                             <FaBusAlt class="text-white" />
                         </div>
                     </div>
@@ -74,7 +74,7 @@ const Dashboard = () => {
                 </div>
                 <div class="w-64 max-md:w-48 max-sm:w-full p-2">
                     <div class="relative">
-                        <div class="absolute -top-12 left-1/2 transform -translate-x-1/2 z-10 bg-gradient-to-b from-green-400 to-green-600 flex justify-center items-center w-20 h-20 text-4xl rounded-full p-2 border- border-gray-300 shadow-lg">
+                        <div class="absolute -top-12 left-1/2 transform -translate-x-1/2 z-10 bg-gradient-to-b from-green-400 to-green-600 flex justify-center items-center w-20 h-20 text-4xl rounded-full p-2 border-4 border-gray-300 shadow-lg">
                             <TbHeartHandshake class="text-white" />
                         </div>
                     </div>
@@ -91,7 +91,7 @@ const Dashboard = () => {
 
                 <div class="w-64 max-md:w-48 max-sm:w-full p-2">
                     <div class="relative">
-                        <div class="absolute -top-12 left-1/2 transform -translate-x-1/2 z-10 bg-gradient-to-b from-purple-400 to-purple-600 flex justify-center items-center w-20 h-20 text-4xl rounded-full p-2 border- border-gray-300 shadow-lg">
+                        <div class="absolute -top-12 left-1/2 transform -translate-x-1/2 z-10 bg-gradient-to-b from-purple-400 to-purple-600 flex justify-center items-center w-20 h-20 text-4xl rounded-full p-2 border-4 border-gray-300 shadow-lg">
                             <FaHandsHoldingChild class="text-white" />
                         </div>
                     </div>

@@ -3,7 +3,7 @@ import AdminTabs from './componants/admin/Tabs';
 import Tabs from './componants/superAdmin/Tabs';
 
 function App() {
-  const type = 'superAdmin';
+  const type = 'admin';
   return (
     <div className="App">
       {type === 'admin' && <AdminTabs />}
